@@ -6,25 +6,22 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="transtype")
 @Data
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class TransType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private int id;
 
-    @Column()
-    String codeMarch;
-
-    @Column()
+    @Column(unique = true)
     String TransTitle;
 
-    public User get(int id2) {
-        return null;
-    }
 }

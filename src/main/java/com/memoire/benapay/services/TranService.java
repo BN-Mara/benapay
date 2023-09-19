@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.memoire.benapay.model.Transaction;
 import com.memoire.benapay.repos.TransRepository;
+import com.memoire.benapay.utils.AppDateTime;
+import com.memoire.benapay.utils.Utils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,8 +19,10 @@ public class TranService {
     @Autowired
     private TransRepository repository;
 
-    public Transaction create(Transaction user){
-       return repository.save(user);
+    public Transaction create(Transaction trans){
+        trans.setReference(generateReference());
+        trans.setDateTrans(AppDateTime.now());
+       return repository.save(trans);
     }
     public Iterable<Transaction> get(){
         return repository.findAll();
@@ -35,5 +39,14 @@ public class TranService {
 
     public Transaction update(Transaction user){
         return repository.save(user);
+    }
+    private String generateReference(){
+        var code = Utils.generateCode();
+        if (repository.findByReference(code) != null) {
+            generateReference();
+        }
+        return code;
+            
+        
     }
 }

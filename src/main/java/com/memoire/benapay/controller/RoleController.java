@@ -26,5 +26,10 @@ public class RoleController {
     public Iterable<Role> fetch(){
         return service.fetch();
     }
+    @GetMapping("/{id}")
+    public Role fetch(int id) {
+        return service.fetch(id);
+    }
+    
 
 }

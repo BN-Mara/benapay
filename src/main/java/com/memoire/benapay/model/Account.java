@@ -14,46 +14,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
-@Table(name="transaction")
-@Data
+@Table(name="account")
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class Transaction {
+@Data
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private int id;
 
-    @Column()
-    LocalDateTime dateTrans;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+    private String currency;
+    private double balance;
+    private LocalDateTime createdAt;
     
-    @Column() //to be incremented
-    int montant;
-
-    @Column()
-    String devise;
-
-    @Column()
-    int merch;
-
-    @Column(unique=true)
-    String reference;
-
-    @Column()
-    int transAmount;
-
-    @ManyToOne //Many to Many
-    @JoinColumn(name="sender_id") //where is the relation
-    private User sender;
-
-    @ManyToOne //Many to Many
-    @JoinColumn(name="receiver_id") //where is the relation
-    private User receiver;
-
-    @Column()
-    boolean statut;
-
-
+    @Column(nullable=true)
+    private LocalDateTime updatedAt;
 }

@@ -1,9 +1,11 @@
 package com.memoire.benapay.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,14 +13,19 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 //import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name="user")
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,7 +50,7 @@ public class User {
     private String numPhone;
 
     @Column(nullable = false)
-    private String bankAccount;
+    private String identityNumber;
 
     @Column(nullable = false)
     private String sexe;
@@ -52,8 +59,19 @@ public class User {
     private String adresse; 
 
     @Column(nullable = false)
+    LocalDate birthDate;
+
+    @Column(nullable = false)
     private boolean statut;
 
-    @OneToMany(mappedBy = "user")
-    private List<Transaction> transactions;
+    @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
+    private List<Transaction> senders;
+
+    @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
+    private List<Transaction> receivers;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Account> accounts;
+
+
 }
