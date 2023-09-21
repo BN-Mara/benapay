@@ -3,6 +3,8 @@ package com.memoire.benapay.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -64,12 +66,7 @@ public class User {
     @Column(nullable = false)
     private boolean statut;
 
-    @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
-    private List<Transaction> senders;
-
-    @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
-    private List<Transaction> receivers;
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Account> accounts;
 

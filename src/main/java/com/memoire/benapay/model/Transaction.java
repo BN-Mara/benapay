@@ -28,15 +28,9 @@ public class Transaction {
 
     @Column()
     LocalDateTime dateTrans;
-    
-    @Column() //to be incremented
-    int montant;
 
     @Column()
     String devise;
-
-    @Column()
-    int merch;
 
     @Column(unique=true)
     String reference;
@@ -46,11 +40,11 @@ public class Transaction {
 
     @ManyToOne //Many to Many
     @JoinColumn(name="sender_id") //where is the relation
-    private User sender;
+    private Account sender;
 
     @ManyToOne //Many to Many
     @JoinColumn(name="receiver_id") //where is the relation
-    private User receiver;
+    private Account receiver;
 
     @Column()
     boolean statut;
