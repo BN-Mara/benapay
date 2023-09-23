@@ -70,7 +70,7 @@ public class TranService {
         //webClient.post()
         var employeeMono = webClient.post()
       .uri("")
-      .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+      .headers(headers -> headers.setBearerAuth("b8021325-6540-31b5-9dca-6b4778c033b2"))
       .body(BodyInserters.fromValue(bodyMap))
       .retrieve()
       .bodyToMono(String.class);

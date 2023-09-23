@@ -25,7 +25,6 @@ public class BenapayApplication {
 		WebClient webClient = WebClient
 		.builder()
 		.baseUrl("http://10.201.10.28:8280/MerchantPaymentUAT/1.0")
-		.defaultCookie("cookieKey", "cookieValue")
 		.exchangeStrategies(strategies)
 		.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 		.build();
