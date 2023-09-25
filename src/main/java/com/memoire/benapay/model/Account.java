@@ -41,9 +41,9 @@ public class Account {
     @Column(nullable=true)
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "sender", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "sender")
     private List<Transaction> senders;
 
-    @OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "receiver")
     private List<Transaction> receivers;
 }

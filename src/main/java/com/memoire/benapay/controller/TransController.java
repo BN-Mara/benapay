@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.memoire.benapay.model.Transaction;
@@ -20,7 +22,7 @@ public class TransController {
     private TranService service;
 
     @PostMapping
-    public Transaction create(Transaction transaction){
+    public Transaction create(@RequestBody Transaction transaction){
         return service.create(transaction);
     }
 
@@ -30,14 +32,14 @@ public class TransController {
     }
     
     @GetMapping("/{id}")
-    public Transaction fetch(int id){
+    public Transaction fetch(@RequestParam int id){
         return service.get(id);
     }
 
     //Benji will include update
 
     @PutMapping
-    public Transaction update(Transaction user){
+    public Transaction update(@RequestBody Transaction user){
         return service.update(user);
     }
 }

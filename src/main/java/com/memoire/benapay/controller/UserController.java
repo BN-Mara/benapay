@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.memoire.benapay.model.User;
@@ -20,7 +22,7 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public User create(User user){
+    public User create(@RequestBody  User user){
         return service.create(user);
     }
 
@@ -30,14 +32,14 @@ public class UserController {
     }
     
     @GetMapping("/{id}")
-    public User fetch(int id){
+    public User fetch( @RequestParam int id){
         return service.get(id);
     }
 
     //Benji will include update
 
     @PutMapping
-    public User update(User user){
+    public User update(@RequestBody User user){
         return service.update(user);
     }
 }

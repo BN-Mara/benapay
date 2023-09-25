@@ -25,6 +25,10 @@ public class TranService {
 
     @Autowired
     private TransRepository repository;
+    @Autowired
+  public TranService(WebClient webClient) {
+      this.webClient = webClient;
+  }
 
     private WebClient webClient;
 

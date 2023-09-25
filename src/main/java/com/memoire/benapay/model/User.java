@@ -67,7 +67,7 @@ public class User {
     private boolean statut;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user")
     private List<Account> accounts;
 
 

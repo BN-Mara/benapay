@@ -3,6 +3,7 @@ package com.memoire.benapay.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class TransTypeController {
     private TransTypeService service;
 
     @PostMapping
-    public TransType create(TransType transType){
+    public TransType create(@RequestBody TransType transType){
         return service.create(transType);
     }
     @GetMapping
