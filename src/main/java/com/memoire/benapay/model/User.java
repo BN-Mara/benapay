@@ -3,6 +3,7 @@ package com.memoire.benapay.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -68,6 +69,7 @@ public class User {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Account> accounts;
 
 
